@@ -1,0 +1,237 @@
+{% extends 'base.html' %}
+{% block title %}Events Manager{% endblock %}
+
+{% import "bootstrap/form.html" as wtf %}
+
+{% block body %}
+    <!-- Banner -->
+    <section class="banner">
+        <div class="container">
+            <div class="col-md-12 pt-5 mt-1 mx-auto text-center">
+                <div class="card withCSS">
+                   <div class="background-image"></div> 
+                   <div class="card-body card-body-CSS">  
+                    <h6 class="text-primary">Genres{% for genre in genreArr %} | {{ genre }} {% endfor %}</h6>
+                      <h1 class="card-title card-title-CSS">
+                        <div class="title-text">{{ event.artist }}</div>
+                      </h1>
+                      
+                      <p>Event posted by {{ event.user.fullName }} on {{ event.dateCreated.strftime('%A, %d %B %Y.') }}</p>
+                      {% if event.status == '["Sold Out"]' or event.status == "Sold Out"%}
+                            <h4><span class="badge mb-5 sol p-2">Sold Out</span></h4>
+                        {% elif event.status == '["Upcoming"]' or event.status == "Upcoming" %}
+                            <h4><span class="badge mb-5 upcoming p-2">Upcoming</span></h4>
+                        {% elif event.status == '["Unpublished"]' or event.status == "Unpublished" %}
+                            <h4><span class="badge mb-5 sol p-2">Unpublished</span></h4>
+                        {% else %}
+                            {{ event.status }}
+                        {% endif %}
+                      <h5 class="card-text card-text-CSS text-with-shadow">{{ event.description }}</h5>
+                      
+
+                      {% if current_user.is_authenticated %}
+                      <button class="btn btn-primary col-md-6" 
+                      data-bs-toggle="modal" data-bs-target="#booking">
+                      Book Tickets
+                      </button>
+                      {% else %}
+                      <button onclick="window.location.href='/login'" class="btn btn-primary col-md-6">
+                      Login to book
+                      </button>
+                      {% endif %}
+
+
+                      {% if current_user.id == event.user_id %}
+                      <div class="row-md text-center p-3">
+                              <button class="btn btn-primary col-lg-3 mt-3" 
+                              data-bs-toggle="modal" data-bs-target="#listing">
+                              Edit Event
+                              </button>
+                            <button onclick="window.location.href='{{ url_for('event.delete', id=event.id) }}'" class="btn btn-primary col-lg-3 mt-3">
+                              Delete Event
+                              </button>
+                      </div>
+                      <div class="modal fade" id="listing" tabindex="-1" role="dialog" aria-labelledby="bookLabel" aria-hidden="true">
+                          <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                              <div class="modal-header">
+                              <h5 class="modal-title" id="listing">Edit Listing</h5>
+                              <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                              </button>
+                              </div>
+                              <section id="inputForm" class="bg-light text-dark">
+                                  <div class="container">
+                                      <div class="col-md-8 mx-auto text-center">
+                                          <h1>Update Event Details</h1>
+                                          <p>Update any event details you need to. Any blank fields will keep their original values.</p>
+                                      </div>
+                          
+                                      {{wtf.render_form(uForm)}}
+                                  </div>
+                              </section>
+                          </div>
+                          </div>
+                      </div>
+                      {% else %}
+                      {% endif %}
+                      
+                    </div>
+                </div>
+             </div>
+        </div>
+    </section>
+
+    <!-- Modal -->
+    <div class="modal fade" id="booking" tabindex="-1" role="dialog" aria-labelledby="bookLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="booking">Book Now</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+                <p class="lead">Fill out your details</p>
+                {{ wtf.render_form(bForm) }}
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <!--ROW 1 Details-->
+    <section class="details relative">    
+        <div class="container">
+            <div class="row">       
+                <div class="col-sm-6 col-md-6 col-lg-4">
+					<div class="card bg-white p-3 mb-4 card-effect info-card p-4">
+                        <div class="col-12">
+                            <div class="iconbox">
+                                <i class="bi bi-person"></i>
+                            </div>
+                            <h4 class="card-title">Who</h4>
+                            <p class="card-title">{{event.artist}}</p>
+                        </div>
+                        
+					</div>
+				</div>
+				
+				<div class="col-sm-6 col-md-6 col-lg-4">
+					<div class="card bg-white p-3 mb-4 card-effect info-card p-4">
+                        <div class="iconbox">
+                            <i class="bi bi-archive"></i>
+                        </div>
+                        <h4 class="card-title">Tickets Available</h4>
+                        <p class="card-title">{{event.tickets}}</p>
+					</div>
+				</div>
+                
+                <div class="col-sm-6 col-md-6 col-lg-4">
+					<div class="card bg-white p-3 mb-4 card-effect info-card p-4">
+                        <div class="justify-content-between mb-4">
+                            <div class="iconbox">
+                                <i class="bi bi-cash"></i>
+                            </div>
+                            <h4 class="card-title">Ticket Price</h4>
+                            <p class="card-title">${{ event.ticketPrice }} per ticket</p>
+                        </div>
+					</div>
+				</div>
+				
+				<div class="col-sm-6 col-md-6 col-lg-6">
+					<div class="card bg-white p-3 mb-4 card-effect info-card p-4">
+						<div class="justify-content-between mb-4">
+                            <div class="iconbox">
+                                <i class="bi bi-geo-alt"></i>
+                            </div>    
+                            <h4 class="card-title">Where</h4>
+                            <p class="card-title">{{event.venue}}</p>
+                        </div>
+					</div>
+				</div>
+
+                <div class="col-sm-6 col-md-6 col-lg-6">
+					<div class="card bg-white p-3 mb-4 card-effect info-card p-4">
+						<div class="justify-content-between mb-4">
+                            <div class="iconbox">
+                                <i class="bi bi-alarm"></i>
+                            </div>
+                            <h4 class="card-title">When</h4>
+                            <p>{{ event.dTime.strftime('%H:%M on %A, %d %B %Y.') }}</p>      
+                        </div>
+					</div>
+				</div>                    
+                <div class="col-sm-12 col-md-12 col-lg-12">
+					<div class="card bg-white p-3 mb-4 card-effect info-card p-4 w-100" style="height: 1000px;">
+						<img class="shadow-1-strong me-3 h-100 w-100"
+                        src="{{event.imgUrl}}" style="position: relative;"/>
+					</div>
+				</div> 
+            </div>            
+            </div>
+            <div class="map col-12">
+                <div class="map">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3540.6087979771887!2d153.03057341448377!3d-27.450300022448904!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6b9159ec1c470c4f%3A0x1d02a35beba17810!2sBrisbane%20Showgrounds!5e0!3m2!1sen!2sau!4v1663570942526!5m2!1sen!2sau" width="800" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>                       
+            </div>
+
+            </div>
+    
+            </div>
+        </div>
+    </section>
+
+    
+    <!-- ROW 2 Comment Section -->
+    <section class="comment">
+        <div class="container">
+            {{ wtf.render_form(form,"/events/{0}/comment".format(event.id))}}
+            {% for comment in event.comments %}
+            <div class="d-flex flex-start mt-5">
+                {% if comment.user.img == None %}
+                <img class="rounded-circle shadow-1-strong me-3"
+                  src="../static/images/user/default_user.jpg" alt="avatar" width="150"
+                  height="150" />
+                {% else %}
+                <img class="rounded-circle shadow-1-strong me-3"
+                  src="{{comment.user.img}}" alt="avatar" width="150"
+                  height="150" />
+                {% endif %}
+                <div class="card w-100">
+                  <div class="card-body p-4">
+                    <div class="">
+                      <h5 clas="text-muted text-center">{{comment.user.fullName}}</h5>
+                      <p class="small text-muted">{{comment.date.strftime('%H:%M on %A, %d %B %Y.')}}</p>
+                      <p class="strong h5">
+                        {{comment.contents}}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+            </div>
+            {% endfor %}
+
+            <!-- <div class="row py-3">
+                {{ wtf.render_form(form,"/events/{0}/comment".format(event.id))}}
+                {% for comment in event.comments %}
+                <div class="comment-list m-3">
+					<div class="comment-list_content">
+						<div class="comment-list_img">
+							<img src="images/user/bbno.jpg" alt="user">
+						</div>
+						<div class="comment-list_detail">
+							<b>{{comment.user.fullName}}</b>
+							<p class="text-muted">{{comment.contents}}</p>
+							<p class="text-muted"><small>{{comment.date.strftime('%H:%M on %A, %d %B %Y.')}}</small></p>
+						</div>
+					</div>
+				</div>
+                {% endfor %}
+            </div> -->
+
+        </div>
+    </section>
+
+    
+{% endblock %}

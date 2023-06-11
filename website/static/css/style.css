@@ -1,0 +1,379 @@
+:root {
+  --box-shadow: 0 8px 22px rgba(0, 0, 0, 0.411);
+  --box-shadow-less: 0 8px 22px rgba(0, 0, 0, 0.1);
+  --body: #888;
+}
+
+body {
+  font-family: "Sora", sans-serif;
+  line-height: 1.7;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.display-4 {
+  font-weight: 700;
+}
+
+.img {
+  width: 100%;
+}
+
+/* Images in account details */
+.user-info__img img {
+  margin-right: 15px;
+  border-radius: 45px;
+  border: 3px solid #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Account details */
+.table {
+  border-spacing: 0 15px;
+  border-collapse: separate;
+}
+.table thead tr th,
+.table thead tr td,
+.table tbody tr th,
+.table tbody tr td {
+  vertical-align: middle;
+  border: none;
+}
+.table thead tr th:nth-last-child(1),
+.table thead tr td:nth-last-child(1),
+.table tbody tr th:nth-last-child(1),
+.table tbody tr td:nth-last-child(1) {
+  text-align: center;
+}
+.table tbody tr {
+  box-shadow: var(--box-shadow-less);
+  border-radius: 5px;
+}
+.table tbody tr td:nth-child(1) {
+  border-radius: 5px;
+}
+.table tbody tr td:nth-last-child(1) {
+  border-radius: 0 5px 5px 0;
+}
+
+.nav-item {
+  padding: 6px;
+  margin: 5px 5px;
+}
+
+.navbar {
+  box-shadow: var(--box-shadow);
+}
+
+section {
+  padding-top: 39px;
+  padding-bottom: 39px;
+  padding-right: 20px;
+  padding-left: 20px;
+}
+
+section.banner {
+  background-image: url("https://static.dezeen.com/uploads/2018/11/drake-set-design-willo-perron-migos-tour_dezeen_sq.jpg");
+}
+
+section.banner .card {
+  background-size: 100%;
+  border-radius: 0px;
+  border: transparent;
+  background-color: #24293300;
+  color: rgba(255, 255, 255, 0.808);
+}
+
+section.banner .card .card-title {
+  color: white;
+}
+
+.card-header .search {
+  display: flex;
+  align-items: flex-end;
+}
+
+form input.form-control,
+select.form-control {
+  height: 35px;
+}
+
+/* removes border */
+form .form-control {
+  border: transparent;
+  border-radius: 0;
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
+form .label {
+  padding-left: 12px;
+}
+
+/* Description in event details */
+section.details div.iconbox {
+  padding-left: 2px;
+  padding-bottom: 8px;
+}
+
+section.details p,
+section.details a {
+  margin-left: 4px;
+}
+
+/* Comment section in event details */
+section.comment {
+  padding: 5px;
+}
+
+section.comment div.comment-body {
+  padding: 5px;
+}
+
+.boxes a.card-title {
+  color: rgb(255, 255, 255);
+}
+
+/* Landing page cards/blog=post */
+
+.card.bg-dark {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+  height: 513.34px;
+}
+
+.card-href {
+  position: absolute;
+  color: white;
+}
+
+.card-body {
+  justify-content: center;
+  align-items: center;
+}
+
+.card.card-effect {
+  box-shadow: var(--box-shadow);
+  background-color: var(--white);
+  padding: 15px;
+  transition: all 0.35s ease;
+}
+
+.card.card-effect:hover {
+  box-shadow: none;
+  transform: translateY(5px);
+}
+
+.btn {
+  padding-left: 25px;
+  padding-right: 25px;
+  border-radius: 50px;
+  -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.16);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.16);
+}
+
+section.comment input.form-control.commentbtn {
+  border-radius: 25px;
+}
+
+.blog-card {
+  background: #fff;
+  -webkit-box-shadow: 0 5px 30px -3px rgba(0, 0, 0, 0.16);
+  box-shadow: 0 5px 30px -3px rgba(0, 0, 0, 0.16);
+  margin-bottom: 20px;
+}
+
+.blog-card .blog-thumbnail {
+  width: 100%;
+  height: 220px;
+  -o-object-fit: cover;
+  object-fit: cover;
+}
+
+/*  */
+
+/* Comment section + info cards*/
+.info-card.card-effect {
+  box-shadow: var(--box-shadow-less);
+  background-color: var(--white);
+  padding: 25px;
+  transition: all 0.35s ease;
+  height: 216px;
+}
+
+.info-card.card-effect:hover {
+  box-shadow: none;
+  transform: translateY(5px);
+}
+
+.comment-ui_dd-content {
+  margin-bottom: 30px;
+}
+
+.comment-list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  padding: 20px;
+  margin-bottom: 7px;
+  background: #fff;
+  -webkit-box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
+}
+
+.comment-list--unread {
+  border-left: 2px solid #29b6f6;
+}
+
+.comment-list .comment-list_content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  justify-content: center;
+}
+
+.comment-list .comment-list_content .comment-list_img img {
+  height: 48px;
+  width: 48px;
+  border-radius: 50px;
+  margin-right: 20px;
+}
+
+.comment-list .comment-list_content .comment-list_detail p {
+  margin-bottom: 5px;
+  line-height: 1.2;
+}
+/*  */
+
+/* FAQ */
+#accordion .accordion-card {
+  background: transparent;
+  border: 0;
+  margin-bottom: 30px;
+}
+#accordion .accordion-card__header {
+  background: transparent;
+  cursor: pointer;
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+#accordion .accordion-card__header.collapsed .drop-icon {
+  transform: rotate(0deg);
+}
+#accordion .accordion-card__header h5 {
+  display: flex;
+  align-items: center;
+}
+#accordion .accordion-card__header h5 span {
+  margin-left: 10px;
+}
+#accordion .accordion-card__header .drop-icon {
+  margin-right: 15px;
+  transform: rotate(180deg);
+  transition: all 0.2s;
+}
+#accordion .accordion-card__body {
+  margin-top: 15px;
+  padding: 25px;
+  background: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 25px -3px rgba(0, 0, 0, 0.1);
+}
+
+.circle-icon {
+  height: 50px;
+  width: 50px;
+  border-radius: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #ff9800;
+  border: 5px solid #ffeacc;
+  color: #fff;
+  margin-left: -20px;
+  margin-right: 10px;
+  transform: scale(1.2);
+}
+/*  */
+
+.img-circle img {
+  height: 250px;
+  width: 250px;
+  border-radius: 100%;
+  border: 5px solid #fff;
+}
+
+.map {
+  display: flex;
+  justify-content: center;
+  padding: 15px;
+  width: 100%;
+}
+
+.card-footer {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  bottom: 0;
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+
+.card-footer.upcoming {
+  background-color: #1d5bd646;
+}
+.badge.upcoming {
+  background-color: #1d5bd646;
+}
+.card-footer.sold {
+  background-color: #d61d1d46;
+}
+.badge.sold {
+  background-color: #d61d1d46;
+}
+
+.card-footer.inactive {
+  background-color: #d61dc746;
+}
+.badge.inactive {
+  background-color: #d61dc746;
+}
+
+.footer-top {
+  padding-top: 90px;
+  padding-bottom: 90px;
+  background-color: var(--dark);
+}
+
+.footer-top a {
+  color: var(--body);
+}
+
+.footer-top a:hover {
+  color: var(--white);
+}
+
+.footer-bottom {
+  background-color: #242933;
+}
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+}

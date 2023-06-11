@@ -1,0 +1,17 @@
+{% extends 'base.html' %} {% import "bootstrap/form.html" as wtf %} {% block
+title %}Create an Event{% endblock %} {% block body %}
+<!-- Input Form -->
+<section id="inputForm" class="bg-light">
+  <div class="container">
+    <div class="col-md-8 mx-auto text-center mt-5 py-5">
+      <h1>Fill Out Your Details</h1>
+      <p>
+        Put in essential details about an event and we will promote it for
+        people to attend and enjoy.
+      </p>
+    </div>
+
+    {{wtf.render_form(eventForm)}}
+  </div>
+</section>
+{% endblock %}

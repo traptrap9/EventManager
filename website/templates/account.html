@@ -1,0 +1,181 @@
+{% extends 'base.html' %}
+
+{% block title %}Profile{% endblock %}
+{% import "bootstrap/form.html" as wtf %}
+{% block body %}
+        
+        <!-- Profile -->
+        <div class="mt-5 pt-5">
+        </div>
+        <div class="container p-4 pb-4 ">
+          <div class="row d-flex justify-content-between">
+            <!--profile-image-->
+            <div class="card col-md-5 d-flex justify-content-end">
+              <div class="col-md-auto p-3 d-flex justify-content-center">
+                {% if user.img == None %}
+                <img src="../static/images/user/default_user.jpg" alt="default user img" style="border-radius: 50%; width: 10rem;">
+                {% else %}
+                <img src="{{ user.img }}" alt="default user img" style="border-radius: 50%; width: 10rem; height: 10rem;">
+                {% endif %}
+              </div>
+              <div class="card-body">
+                <p class="card-text fw-bold text-center">{{user.fullName}}</p>
+                <!--nickname-->
+                {% if user.nickname == None %}
+                <p class="card-text text-center animate__animated animate__bounce"><small class="text-muted">Edit your Nickname</small></p>
+                {% else %}
+                <p class="card-text text-center"><small class="text-muted">{{user.nickname}}</small></p>
+                {% endif %}
+                <!--interest-->
+                {% if user.interest == None %}
+                <p class="card-text text-center w-100 animate__animated animate__bounce"><small class="text-muted">Edit your interested Music</small></p>
+                {% else %}
+                <p class="card-text text-center w-100 animate__bounceIn"><small class="text-muted">Interested {{user.interest}}</small></p>
+                {% endif %}
+                <div class="d-flex justify-content-center">
+                  <button class="btn btn-outline-primary col-lg-3 mt-3" 
+                  data-bs-toggle="modal" data-bs-target="#profile">
+                  Edit
+                  </button>
+                </div>
+                <!--modal for profile-->
+                <div class="modal fade" id="profile" tabindex="-1" role="dialog" aria-labelledby="bookLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                      <div class="modal-header">
+                      <h5 class="modal-title" id="listing">Edit profile</h5>
+                      <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                      </button>
+                      </div>
+                      <section id="inputForm" class="bg-light text-dark">
+                          <div class="container">
+                              <div class="col-md-8 mx-auto text-center">
+                                  <h1>Update Profile</h1>
+                                  <p>Update your profile such as Nickname, interested music.</p>
+                              </div>
+                  
+                              {{wtf.render_form(pForm)}}
+                          </div>
+                      </section>
+                  </div>
+                </div>
+
+              </div>
+              </div>
+            </div>
+            <!--profile-contact-->
+            <div class="card border border-2 col-md-5" style="width: 50rem;">
+              <div class="container bg-white border-bottom d-flex flex-row">
+                <div class="col-md-4 p-3 ms-5 align-items-center ">
+                  <h5>Name</h5>
+                </div>
+                <div class="col-md-7 p-3 align-items-center d-flex ms-4"><p class="card-text"><small class="text-muted">{{user.fullName}}</small></div>
+              </div>
+              <div class="container bg-white border-bottom d-flex flex-row">
+                <div class="col-md-4 p-3 ms-5 align-items-center">
+                  <h5>E-mail</h5>
+                </div>
+                <div class="col-md-7 p-3 align-items-center d-flex ms-4"><p class="card-text w-100"><small class="text-muted">{{user.email}}</small></div>
+              </div>
+              <div class="container bg-white border-bottom d-flex flex-row">
+                <div class="col-md-4 p-3 ms-5 align-items-center ">
+                  <h5>Mobile</h5>
+                </div>
+                <div class="col-md-7 p-3 align-items-center d-flex ms-4"><p class="card-text w-100"><small class="text-muted">{{user.phone}}</small></div>
+              </div>
+              <div class="container bg-white border-bottom d-flex flex-row">
+                <div class="col-md-4 p-3 ms-5 align-items-center ">
+                  <h5>Address</h5>
+                </div>
+                {% if user.address == None %}
+                <div class="col-md-7 p-3 align-items-center d-flex ms-4 animate__animated animate__bounce"><p class="card-text"><small class="text-muted">Edit your address</small></div>
+                {% else %}
+                <div class="col-md-7 p-3 align-items-center d-flex ms-4"><p class="card-text w-100"><small class="text-muted">{{user.address}}</small></div>
+                {% endif %}
+              </div>
+              <div class="container bg-white border-bottom d-flex flex-row">
+                <div class="col-md-4 p-3 ms-5 align-items-center ">
+                  <h5>Company</h5>
+                </div>
+                {% if user.company == None %}
+                <div class="col-md-7 p-3 align-items-center d-flex ms-4 animate__animated animate__bounce"><p class="card-text"><small class="text-muted">Edit your company</small></div>
+                {% else %}
+                <div class="col-md-7 p-3 align-items-center d-flex ms-4"><p class="card-text w-100"><small class="text-muted">{{user.company}}</small></div>
+                {% endif %}
+              </div>
+              <div class="d-flex justify-content-center align-items-center p-4">
+                <button class="btn btn-outline-success col-lg-3 mt-3" 
+                  data-bs-toggle="modal" data-bs-target="#contact">
+                  Edit
+                  </button>
+              </div>
+              </div>
+              <!--modal for profile-->
+              <div class="modal fade" id="contact" tabindex="-1" role="dialog" aria-labelledby="bookLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title" id="listing">Edit contact</h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                    <section id="inputForm" class="bg-light text-dark">
+                        <div class="container">
+                            <div class="col-md-8 mx-auto text-center">
+                                <h1>Update Contact</h1>
+                                <p>Update your contact such as comany, address.</p>
+                            </div>
+          
+                            {{wtf.render_form(contactForm)}}
+                        </div>
+                    </section>
+                </div>
+              </div>
+            </div>
+            </div>
+          </div>
+        </div>
+        
+      <!-- History -->
+          <div class="container p-6 col w-50 pt-4 mt-5 pb-4 h-100;">
+              <div class="list-group">
+                  <div class="list-group-item list-group-item-action">
+                    <div class="d-flex w-100 justify-content-between col">
+                      <div class="col-md-2"></div>
+                      <div class="mb-1 col-md-4 d-flex align-items-center font-weight-bold">
+                        <div class="ms-4">Event</div>
+                      </div>
+                      <div class="mb-1 col-md-2 d-flex align-items-center font-weight-bold">Quantity</div>
+                      <div class="col-md-2 d-flex align-items-center font-weight-bold">Order Number</div>
+                      <div class="col-md-2 d-flex align-items-center font-weight-bold">Order Date</div>
+                    </div>
+                  </div>
+                  {% for booking in user.bookings %}
+                  <a href="{{url_for('event.show', id=booking.event_id)}}" class="list-group-item list-group-item-action" aria-current="true">
+                    <div class="d-flex w-100 justify-content-between">
+                      <img class="shadow-1-strong me-3 col-md-2"
+                        src="{{ booking.event_img }}" alt="avatar"  width="150"
+                        height="150" style="border-radius: 50%;" />
+                      <h5 class="mb-1 ms-2 col-md-4 d-flex align-items-center w-100 row">
+                        <div class="">{{booking.event_artist}}</div>
+                        <div class="d-flex w-100 justify-content-between">
+                          <small class="mb-1 align-items-center text-muted w-100">{{booking.event_description}}</small>
+                        </div>
+                      </h5>
+                      <div class="col-md-2 d-flex align-items-center w-100">{{booking.ticketsBought}}</div>
+                      <div class="col-md-2 d-flex align-items-center w-100">{{booking.id+1000000}}</div>
+                      <small class="col-md-2 d-flex align-items-center w-100">{{booking.date.strftime('%d %B %Y')}}</small>
+                    </div>
+                  </a>
+                  {% endfor %}
+                </div>
+          </div>
+          <div class="container p-3 mt-2 d-flex justify-content-end">
+              <button>
+                  <a class="nav-link active text-dark fw-bold" style="font-size: medium;" href="/">Back</a>
+              </button>
+          </div>
+    </body>
+    {% endblock %}

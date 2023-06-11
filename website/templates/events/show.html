@@ -1,0 +1,229 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <!-- Banner -->
+    <section class="banner">
+        <div class="container">
+            <div class="col-md-12 pt-5 mt-1 mx-auto text-center">
+                <div class="card withCSS">
+                   <div class="background-image"></div>
+                   <div class="card-body card-body-CSS">
+                    <h6 class="text-primary">RAP | HIP-HOP | RNB</h6>
+                      <h1 class="card-title card-title-CSS">
+                        <div class="title-text">Aubrey Drake Graham</div>
+                      </h1>
+                      <p class="card-text card-text-CSS text-with-shadow">Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias necessitatibus voluptates nemo, eos enim eligendi explicabo provident nostrum tenetur perferendis similique praesentium, ipsa consequatur corporis, iure repellat exercitationem quo autem.</p>
+                      
+                      <button class="btn btn-primary col-md-6" 
+                      data-bs-toggle="modal" data-bs-target="#book">
+                      Book Tickets
+                      </button>   
+                    </div>
+                </div>
+             </div>
+        </div>
+    </section>
+
+    <!-- Modal -->
+    <div class="modal fade" id="book" tabindex="-1" role="dialog" aria-labelledby="bookLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Book Now</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+                <p class="lead">Fill out your details</p>
+                <form action="" class="g-3">
+
+                    <div class="mb-3">
+                        <label for="email" class="col-form-label">
+                            Email Address:
+                        </label>
+                        <input type="text" class="form-control" id="email" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="mobile" class="col-form-label">
+                            Mobile Number:
+                        </label>
+                        <input type="number" class="form-control" id="mobile">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="password" class="col-form-label">
+                            Password:
+                        </label>
+                        <input type="password" class="form-control" id="password" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="artistName" class="col-form-label" >Number of Tickets: </label>
+                        <input type="number" class="form-control" required>
+                    </div>
+
+                    <div class="modal-footer">
+                        <a href="eventDetails.html" class="btn btn-outline-dark">Cancel</a>
+                        <button class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        </div>
+    </div>
+    
+
+    <!--ROW 1 Details-->
+    <section class="details">    
+        <div class="container">
+            <div class="row">       
+                <div class="col-sm-6 col-md-6 col-lg-4">
+					<div class="card bg-white p-3 mb-4 card-effect info-card p-4">
+                        <div class="col-6">
+                            <div class="iconbox">
+                                <i class="bi bi-person"></i>
+                            </div>
+                            <h4 class="card-title">Who</h4>
+                            <p class="card-title">Aubrey Drake Graham</p>
+                        </div>
+                        
+					</div>
+				</div>
+				
+				<div class="col-sm-6 col-md-6 col-lg-4">
+					<div class="card bg-white p-3 mb-4 card-effect info-card p-4">
+                        <div class="iconbox">
+                            <i class="bi bi-alarm"></i>
+                        </div>
+                        <h4 class="card-title">When</h4>
+                        <p class="card-title">20/10/2022</p>
+                        <p class="card-title">8:30 pm - 12:30 am AEST</p>     
+					</div>
+				</div>
+                
+                <div class="col-sm-6 col-md-6 col-lg-4">
+					<div class="card bg-white p-3 mb-4 card-effect info-card p-4">
+                        <div class="justify-content-between mb-4">
+                            <div class="iconbox">
+                                <i class="bi bi-alarm"></i>
+                            </div>
+                            <h4 class="card-title">When</h4>
+                            <p class="card-title">20/10/2022</p>
+                            <p class="card-title">8:30 pm - 12:30 am AEST</p>     
+                        </div>
+					</div>
+				</div>
+				
+				<div class="col-sm-6 col-md-6 col-lg-6">
+					<div class="card bg-white p-3 mb-4 card-effect info-card p-4">
+						<div class="justify-content-between mb-4">
+                            <div class="iconbox">
+                                <i class="bi bi-geo-alt"></i>
+                            </div>    
+                            <h4 class="card-title">Where</h4>
+                            <p class="card-title">Brisbane Showgrounds, 600 Gregory Terrace Bowen Hills QLD 4006</p>
+                        </div>
+					</div>
+				</div>
+
+                <div class="col-sm-6 col-md-6 col-lg-6">
+					<div class="card bg-white p-3 mb-4 card-effect info-card p-4">
+						<div class="justify-content-between mb-4">
+                            <div class="iconbox">
+                                <i class="bi bi-archive"></i>
+                            </div>
+                            <h4 class="card-title">Tickets Available</h4>
+                            <p>100</p>      
+                        </div>
+					</div>
+				</div>                    
+            </div>            
+            </div>
+
+            <div class="map col-12">
+                <div class="map">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3540.6087979771887!2d153.03057341448377!3d-27.450300022448904!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6b9159ec1c470c4f%3A0x1d02a35beba17810!2sBrisbane%20Showgrounds!5e0!3m2!1sen!2sau!4v1663570942526!5m2!1sen!2sau" width="800" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>                       
+            </div>
+
+            </div>
+    
+            </div>
+        </div>
+    </section>
+
+    
+    <!-- ROW 2 Comment Section -->
+    <section class="comment">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="input-group">
+                        <input type="text" class="commentbtn form-control" placeholder="Comment" aria-label="Comment" aria-describedby="basic-addon2" required>
+                        <div class="input-group-append">
+                          <button class="btn btn-outline-secondary" type="button">Send</button>
+                        </div>
+                      </div>
+                </div>
+            </div>
+        
+            <div class="row py-3">
+
+				<div class="comment-list m-3">
+					<div class="comment-list_content">
+						<div class="comment-list_img">
+							<img src="images/user3.jpeg" alt="user">
+						</div>
+						<div class="comment-list_detail">
+							<b>Mary Sue</b>
+							<p class="text-muted">I've been to previous events but this one is going to be so good</p>
+							<p class="text-muted"><small>14 Aug 2022</small></p>
+						</div>
+					</div>
+				</div>
+
+                <div class="comment-list m-3">
+					<div class="comment-list_content">
+						<div class="comment-list_img">
+							<img src="images/user1.jpg" alt="user">
+						</div>
+						<div class="comment-list_detail">
+							<b>Anshul</b>
+							<p class="text-muted">One of the best performers out there! He won't dissapoint</p>
+							<p class="text-muted"><small>19 Aug 2022</small></p>
+						</div>
+					</div>
+				</div>
+        
+                <div class="comment-list m-3">
+					<div class="comment-list_content">
+						<div class="comment-list_img">
+							<img src="images/user2.jpg" alt="user">
+						</div>
+						<div class="comment-list_detail">
+							<b>Ariana G</b>
+							<p class="text-muted">I hope there will be a large crowd there</p>
+							<p class="text-muted"><small>11 Sep 2022</small></p>
+						</div>
+					</div>
+				</div>
+        
+                <div class="comment-list m-3">
+					<div class="comment-list_content">
+						<div class="comment-list_img">
+							<img src="images/user4.jpg" alt="user">
+						</div>
+						<div class="comment-list_detail">
+							<b>Ice Spice</b>
+							<p class="text-muted">I'm bringing all of my friends</p>
+							<p class="text-muted"><small>14 Oct 2022</small></p>
+						</div>
+					</div>
+				</div>
+
+            </div>
+        </div>
+    </section>
+{% endblock %}

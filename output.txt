@@ -1,0 +1,185 @@
+Levi Hunt (39):
+      Made login func redirect if there was bad input.
+      Ported event creation to work with base.html
+      Converted login form to use WTForm instead of html
+      Updated registration form to use WTForm syntax
+      Had an issue, but its fixed. Because navbar + modals are in base.html, all form.py code has to be passed through each render template
+      Got nearly all event creation stuff strung together. Need to figure out how to get form to POST :(
+      Fixed login and registration for the nth time.
+      Trying to get Flash messages to run properly
+      Added password check to reg form
+      Error pages added
+      Merge branch 'Error-Code-404-500-Pages'
+      I think that merge worked
+      Fixed the flash messages
+      Commented out broken code in models.py
+      Working create event, but barely. need to work backwards from this point to ensure compatibility
+      Saves event to database, datetime saves as null tho
+      Deleted old code
+      Merge successful??
+      Absolutely tweaking. events rendered on home page
+      Merge branch 'master' of https://github.com/levi-hunt/IAB207_Ass3
+      Linked /<id> to show respective event
+      Issue with datetime in db model fixed The db model variable was dtime, everywhere else was dTime.
+      Added formatting to how datetime is displayed
+      Added rough booking db model
+      Added in ticket price to events model
+      Added ticket price to event page
+      Updated info on card rendered in index.html
+      Edited Event Card on main page to show datetime of event
+      changed event stuff and added redirect link in reg + login
+      Added booking functionality
+      Bookings go brazy
+      Updated status changes
+      Same
+      Added edit option at bottom of eventDetails
+      Added conditional jinja so only the creator can edit their event
+      Fix for two forms submitting together
+      Added delete functionality to events
+      I don't even know what I changed
+      Making tickets > 0 updates event status
+
+Yeonsu Lee (67):
+      DB linked, need to HTML things
+      done!
+      Change CSS in Commens section
+      Flash comment section change.
+      Add a little bit of CSS
+      Route for the profile document
+      Route the profile document-error fix
+      Inherited base.html
+      Solve "close button" not working in Edit modal
+      Change profile skeleton
+      apply DB data - but need to add DB and apply more
+      user DB update-company,nickname,interest,address
+      DB update - profile img add
+      Add flask syntax for the dynamic profile document
+      Linked Profile DB
+      Add forms, model, update modal Left profile
+      Change modal text and CSS
+      Add contact profile DB and modal things
+      change Profile section bootstrap
+      add animation for the profile section to update
+      Update booking DB to link event artist and des
+      Booking date add and did styling
+      Booking section DB done - need to change style
+      Add quantity in the booking history
+      based on added DB of user, add user img in comment
+      Change CSS
+      Address add in Register
+      Change position of address of profile
+      Made email checking system
+      Change flash text in booking
+      add validators package and check email
+      check
+      Error message-not valid email
+      modified db
+      modified db
+      change DB and add status "Unpublished"
+      Made Unpublished navbar and page
+      check
+      check
+      Made Check system unpublished event and navbar
+      Unpublished event basic skeleton
+      solve AnonymousUserMixin error
+      Change Unpublished css
+      Chnage SQLquery for the Unpublished
+      change unpublished
+      Change-SQL db and add status condition
+      check
+      Change css in event detail
+      Merge branch 'Fix-Lee'
+      Change CSS in unpublished tab
+      Formmating
+      deleted placed holder
+      fixed the init file due to error
+      fixed error
+      category and debuging error
+      category and debugging
+      unpublished tab animation
+      animation in unpublished tab
+      profile-circle
+      Merge branch 'Category-Lee'
+      Merge branch 'master' of https://github.com/levi-hunt/IAB207_Ass3
+      last
+      Merge branch 'master' of https://github.com/levi-hunt/IAB207_Ass3
+      Last!
+      Logout
+      last
+      Debuging - edit error
+
+levi-hunt (5):
+      Added database classes/tables
+      Fixed database models so program can compile
+      Can now view home page with no issue Fixed missing images Implemented basic routing for auth + views
+      Formatted the registration modal Added if/else in jinja to show permissions once logged in
+      Registration works as far as i know
+
+levi-qut (10):
+      Imported Starter Code for assignment
+      Moving all recurring code to base.html Starting with index.html.
+      Made base.html and index work. Think I need to implement user accounts before its usable
+      OK REGISTRATION WORKS RN
+      Everything is fixed Loggin in and logging out work
+      Added html for registration and login
+      Made some progress. Events moved to its own blueprint. Having issues with event creation form validation thats now allowing for submissions
+      Random files
+      Updated requirements
+      Added back events title to login + reg
+
+traptrap9 (54):
+      Inital Event Details viewing
+      Dynamic Event Details page - used dummy data to pass through
+      Dynamic Event Details page - used dummy data to pass through
+      Create event form working - not connected to db, just using printing to console
+      Initial Comment Submitting and Display
+      Set up Comment submitting  - need to connect to database
+      Attempt to merge
+      Connecting up Comment and Destination to db
+      I'm stuck in master trying to get to my branch
+      Merge branch 'master' of https://github.com/levi-hunt/IAB207_Ass3
+      Formatting
+      Formatting
+      Progress
+      Need to fix '+' in url
+      Search Functionality Done
+      wocky
+      Merging Search Functionality
+      Merge remote-tracking branch 'origin/Search-Functionality'
+      Moved the edit/delete event under book tickets - hope you don't mind Levi
+      Fixing the duplicate comment
+      contin..
+      Removed duplicate comment
+      Start Button Index page
+      Start button index page  - changes depending on user logged in status
+      Fixed Index Start Now Button
+      404 hiding content fixed
+      Added Comments
+      commit
+      Commit
+      db stage
+      Merge branch 'Minor-Fixes'
+      Attempted Dynamic Background image
+      #content
+      db stage
+      Merge remote-tracking branch 'origin/Minor-Fixes'
+      comitt
+      Merge branch 'master' of https://github.com/levi-hunt/IAB207_Ass3
+      views was commented out
+      reverted init.py
+      Fixing web app
+      Merge branch 'master' of https://github.com/levi-hunt/IAB207_Ass3
+      init
+      fixed
+      All fIxed. Just no db data
+      db
+      Tabular progress
+      Tabular progress
+      db idk
+      Merge branch 'Category-Lee' of https://github.com/levi-hunt/IAB207_Ass3 into Category-Lee
+      Merge remote-tracking branch 'origin/Category-Lee'
+      Progress
+      Progress
+      Placeholder info added to edit
+      Merge remote-tracking branch 'origin/Prefilled-edit-events'
+

@@ -1,0 +1,56 @@
+{% extends 'base.html' %} {% block title %}Register{% endblock %} {% block body
+%}
+<section id="inputForm" class="bg-light">
+  <div class="container">
+    <div class="col-md-8 mx-auto text-center mt-5 py-5">
+      <h1>Fill Out Your Details</h1>
+      <p>Put in your details below to create an account!</p>
+    </div>
+    <p class="lead">Fill out your details</p>
+    <form action="/register" class="g-3" method="POST">
+      {{ regForm.csrf_token }}
+      <div class="col-md-12">
+        {{ regForm.fullName.label (class="col-form-label") }} {{
+        regForm.fullName (class="form-control") }}
+      </div>
+      <div class="col-md-12">
+        {{ regForm.mobile.label (class="col-form-label") }} {{ regForm.mobile
+        (class="form-control") }}
+      </div>
+      <div class="col-md-12">
+        {{ regForm.email.label (class="col-form-label") }} {{ regForm.email
+        (class="form-control") }}
+      </div>
+      <div class="col-md-12">
+        {{ regForm.address.label (class="col-form-label") }} {{ regForm.address
+        (class="form-control") }}
+      </div>
+      <div class="col-md-12">
+        {{ regForm.password.label (class="col-form-label") }} {{
+        regForm.password (class="form-control") }}
+      </div>
+      <div class="col-md-12">
+        {{ regForm.confirm.label (class="col-form-label") }} {{ regForm.confirm
+        (class="form-control") }}
+      </div>
+      <div class="modal-footer">
+        <a href="/" class="btn btn-outline-dark">Cancel</a>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </form>
+  </div>
+</section>
+<section class="container-fluid bg-dark text-light text-center">
+  <div class="">
+    <h5>Already have an account? Click below to login!</h5>
+    <button
+      type="button"
+      onclick="window.location.href='/login'"
+      class="btn btn-outline-light"
+    >
+      Login
+    </button>
+  </div>
+</section>
+
+{% endblock %}

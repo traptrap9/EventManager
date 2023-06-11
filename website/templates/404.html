@@ -1,0 +1,20 @@
+{% extends 'base.html' %} {% block title %} Error 404 - Page Not Found{%
+endblock %} {% block body %}
+<section class="text-center text-sm-left pt-5">
+  <div class="row justify-content-lg-center container pt-5">
+    <div class="col col-lg-6 py-5">
+      <h1>404! What you're looking for isn't here!</h1>
+      <h3>
+        Try checking that the URL you entered is correct.<br />If that isn't the
+        issue, go <a href="{{url_for('views.index')}}">HOME</a>
+      </h3>
+    </div>
+    <div class="col col-lg-auto py-5">
+      <img
+        class="img-fluid"
+        src="{{ url_for('static', filename='images/notfoundsadge.jpg') }}"
+      />
+    </div>
+  </div>
+</section>
+{% endblock %}

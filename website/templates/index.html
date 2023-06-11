@@ -1,0 +1,572 @@
+{% extends 'base.html' %} {% block title %}Events Manager{% endblock %} {% block
+body %}
+<section class="bg-dark text-light text-center text-sm-left">
+  <div class="container py-5">
+    <div class="d-sm-flex align-items-center justify-content-between py-5">
+      <div>
+        <h1>
+          Book <span class="text-warning">events </span>in your area today!
+        </h1>
+        <p class="lead mb-4">
+          Search, host and book all types of musical events in areas across the
+          nation. Sign up and see all hype concerts
+        </p>
+        {% if current_user.is_authenticated %}
+        <button
+          class="btn btn-primary"
+          data-bs-toggle="modal"
+          onclick="window.location.href='/events/create'"
+        >
+          Create Event
+        </button>
+        {% else %}
+        <button
+          class="btn btn-primary"
+          data-bs-toggle="modal"
+          onclick="window.location.href='/register'"
+        >
+          Start Now
+        </button>
+        {% endif %}
+      </div>
+      <img
+        class="img-fluid w-50 d-none d-sm-block"
+        src="{{ url_for('static', filename='images/concert-icon.svg') }}"
+        alt="concert image"
+      />
+    </div>
+  </div>
+</section>
+
+<!-- Boxes -->
+<!-- Make this iterate through listings -->
+<section class="boxes" id="boxes">
+  <div class="container g-4">
+    <div class="col-md-8 mx-auto text-center p-5">
+      <h6 class="text-primary">BROWSE</h6>
+      <h1>Hottest Performances in Your Area</h1>
+      <p id="content">
+        Look through a plethora of musical events in your area. Sort through all
+        our endless categories to find a vibe that you can mess with. Book
+        tickets for you and your friends to attend a once in a life time
+        experience.
+      </p>
+    </div>
+
+    <div class="card-header">
+      <div class="container-fluid">
+        <div class="row">
+
+          <ul class="nav nav-tabs card-header-tabs w-500 col-md-12 col-lg-6">
+            <li class="nav-item">
+              <a class="nav-link" id="hip_tag" onclick="every_events()">All</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" onclick="hip()" id="hip_tag">Hip-Hop</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="hip_tag" onclick="rnb()">RnB</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="hip_tag" onclick="rock()">Rock</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" onclick="pop()" id="hip_tag">Pop</a>
+            </li>
+          </ul>
+          <!--Event handler and javascript-->
+          <script type="text/javascript" src="script.js"></script>
+          <style>
+            .events {
+              display:none
+            }
+          </style>
+    
+          <script>
+            function hip() {
+              document.getElementById("Hip-Hop").classList.remove("events");
+              document.getElementById("pop").classList.add("events");
+              document.getElementById("rnb").classList.add("events");
+              document.getElementById("all_event").classList.add("events");
+              document.getElementById("rock").classList.add("events");
+            }
+            function every_events() {
+              document.getElementById("all_event").classList.remove("events");
+              document.getElementById("pop").classList.add("events");
+              document.getElementById("rnb").classList.add("events");
+              document.getElementById("Hip-Hop").classList.add("events");
+              document.getElementById("rock").classList.add("events");
+            }
+            
+            function pop() {
+              document.getElementById("pop").classList.remove("events");
+              document.getElementById("Hip-Hop").classList.add("events");
+              document.getElementById("rnb").classList.add("events");
+              document.getElementById("all_event").classList.add("events");
+              document.getElementById("rock").classList.add("events");
+            }
+            function rnb() {
+              document.getElementById("rnb").classList.remove("events");
+              document.getElementById("pop").classList.add("events");
+              document.getElementById("Hip-Hop").classList.add("events");
+              document.getElementById("all_event").classList.add("events");
+              document.getElementById("rock").classList.add("events");
+            }
+            function rock() {
+              document.getElementById("rock").classList.remove("events");
+              document.getElementById("pop").classList.add("events");
+              document.getElementById("rnb").classList.add("events");
+              document.getElementById("all_event").classList.add("events");
+              document.getElementById("Hip-Hop").classList.add("events");
+            }
+          </script>
+          
+          <form
+            class="col-md-12 col-lg-6 search pt-3 pb-2"
+            role="search"
+            action="{{url_for('views.search')}}"
+          >
+            <input
+              class="form-control me-2"
+              name="search"
+              type="text"
+              placeholder="Search"
+              aria-label="Search"
+            />
+            <button class="btn btn-outline" type="submit">Search</button>
+          </form>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- <div class="col-md-4 pt-4">
+					<div class="blog-card card bg-dark text-light bg-light card-effect">
+						<img src="{{ url_for('static', filename='images/cench.jpg') }}" alt="" class="blog-thumbnail">
+						<div class="blog-container card-body pb-5">
+							<span class="badge badge-warning mb-2">Hottest</span>
+                            <h3 class="">
+                                <a href="eventDetails.html" class="card-title">
+                                    Listen Out
+                                </a>                                
+                            </h3>
+							<p>
+                                Listen Out is Australia’s primary national ...
+                            </p>
+                            <hr>
+							<p>By <a href="#!">Traptrap</a> <span class="pull-right">3 days ago</span></p>
+						</div>
+                        <div class="card-footer booked">
+                            You are Booked
+                        </div>
+					</div>
+				</div> -->
+    <!-- all -->
+    <div class="row tab-content" id="all_event">
+      {% for event in events %}
+      <!-- For genres in event.genre -->
+      <!-- if genres = tab id -->
+      <div class="col-md-4 pt-4 show active fade" id="{{ event.genre }}" aria-labelledby="{{ event.genre }}">
+        <div class="blog-card card bg-dark text-light bg-light card-effect">
+          <img
+            src="{{ event.imgUrl }}"
+            alt=""
+            style="overflow: hidden"
+            class="blog-thumbnail"
+          />
+          <div class="blog-container card-body pb-5">
+            <span class="badge badge-info mb-2"
+              >{{ event.dTime.strftime('%H:%M on %A, %d %B %Y') }}</span
+            >
+            <h3 class="">
+              <a
+                href="{{url_for('event.show', id=event.id)}}"
+                class="card-title"
+              >
+                {{ event.artist }}
+              </a>
+            </h3>
+
+            <p>
+              {{ event.description[:60] }}...
+              <a href="{{url_for('event.show', id=event.id)}}">read more</a>
+            </p>
+            <div class="row">
+              <div class="col-6">
+                <p><b>Tickets:</b> {{event.tickets}}</p>
+              </div>
+              <div class="col-6">
+                <p><b>Price:</b> ${{event.ticketPrice}}</p>
+              </div>
+            </div>
+            <p>
+              By <a href="#!">{{ event.user.fullName }}</a>
+              <span class="pull-right"
+                >on {{ event.dateCreated.strftime('%d-%m-%Y') }}</span
+              >
+            </p>
+          </div>
+          {% if event.status == '["Sold Out"]' or event.status == "Sold Out" %}
+          <div class="card-footer mt-3 sold">Sold Out</div>
+          {% elif event.status == '["Upcoming"]' or event.status == "Upcoming"
+          %}
+          <div class="card-footer upcoming mt-3 booked">Upcoming</div>
+          {% elif event.status == '["Unpublished"]' or event.status ==
+          "Unpublished" %}
+          <div class="card-footer mt-3 inactive">Unpublished</div>
+          {% endif %}
+        </div>
+      </div>
+      <!-- endif -->
+      <!-- endfor -->
+      {% endfor %}
+
+    </div>
+    <!-- pop -->
+    <div class="row tab-content events" id="pop">
+      {% for event in pop %}
+      <div class="col-md-4 pt-4">
+        <div class="blog-card card bg-dark text-light bg-light card-effect">
+          <img
+            src="{{ event.imgUrl }}"
+            alt=""
+            style="overflow: hidden"
+            class="blog-thumbnail"
+          />
+          <div class="blog-container card-body pb-5">
+            <span class="badge badge-info mb-2"
+              >{{ event.dTime.strftime('%H:%M on %A, %d %B %Y') }}</span
+            >
+            <h3 class="">
+              <a
+                href="{{url_for('event.show', id=event.id)}}"
+                class="card-title"
+              >
+                {{ event.artist }}
+              </a>
+            </h3>
+
+            <p>
+              {{ event.description[:60] }}...
+              <a href="{{url_for('event.show', id=event.id)}}">read more</a>
+            </p>
+            <div class="row">
+              <div class="col-6">
+                <p><b>Tickets:</b> {{event.tickets}}</p>
+              </div>
+              <div class="col-6">
+                <p><b>Price:</b> ${{event.ticketPrice}}</p>
+              </div>
+            </div>
+            <p>
+              By <a href="#!">{{ event.user.fullName }}</a>
+              <span class="pull-right"
+                >on {{ event.dateCreated.strftime('%d-%m-%Y') }}</span
+              >
+            </p>
+          </div>
+          {% if event.status == '["Sold Out"]' or event.status == "Sold Out" %}
+          <div class="card-footer mt-3 sold">Sold Out</div>
+          {% elif event.status == '["Upcoming"]' or event.status == "Upcoming"
+          %}
+          <div class="card-footer upcoming mt-3 booked">Upcoming</div>
+          {% elif event.status == '["Unpublished"]' or event.status ==
+          "Unpublished" %}
+          <div class="card-footer mt-3 inactive">Unpublished</div>
+          {% endif %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <!-- hiphop -->
+    <div class="row tab-content events" id="Hip-Hop">
+      {% for event in hip %}
+      <div class="col-md-4 pt-4">
+        <div class="blog-card card bg-dark text-light bg-light card-effect">
+          <img
+            src="{{ event.imgUrl }}"
+            alt=""
+            style="overflow: hidden"
+            class="blog-thumbnail"
+          />
+          <div class="blog-container card-body pb-5">
+            <span class="badge badge-info mb-2"
+              >{{ event.dTime.strftime('%H:%M on %A, %d %B %Y') }}</span
+            >
+            <h3 class="">
+              <a
+                href="{{url_for('event.show', id=event.id)}}"
+                class="card-title"
+              >
+                {{ event.artist }}
+              </a>
+            </h3>
+
+            <p>
+              {{ event.description[:60] }}...
+              <a href="{{url_for('event.show', id=event.id)}}">read more</a>
+            </p>
+            <div class="row">
+              <div class="col-6">
+                <p><b>Tickets:</b> {{event.tickets}}</p>
+              </div>
+              <div class="col-6">
+                <p><b>Price:</b> ${{event.ticketPrice}}</p>
+              </div>
+            </div>
+            <p>
+              By <a href="#!">{{ event.user.fullName }}</a>
+              <span class="pull-right"
+                >on {{ event.dateCreated.strftime('%d-%m-%Y') }}</span
+              >
+            </p>
+          </div>
+          {% if event.status == '["Sold Out"]' or event.status == "Sold Out" %}
+          <div class="card-footer mt-3 sold">Sold Out</div>
+          {% elif event.status == '["Upcoming"]' or event.status == "Upcoming"
+          %}
+          <div class="card-footer upcoming mt-3 booked">Upcoming</div>
+          {% elif event.status == '["Unpublished"]' or event.status ==
+          "Unpublished" %}
+          <div class="card-footer mt-3 inactive">Unpublished</div>
+          {% endif %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <!-- rock -->
+    <div class="row tab-content events" id="rock">
+      {% for event in rock %}
+      <div class="col-md-4 pt-4">
+        <div class="blog-card card bg-dark text-light bg-light card-effect">
+          <img
+            src="{{ event.imgUrl }}"
+            alt=""
+            style="overflow: hidden"
+            class="blog-thumbnail"
+          />
+          <div class="blog-container card-body pb-5">
+            <span class="badge badge-info mb-2"
+              >{{ event.dTime.strftime('%H:%M on %A, %d %B %Y') }}</span
+            >
+            <h3 class="">
+              <a
+                href="{{url_for('event.show', id=event.id)}}"
+                class="card-title"
+              >
+                {{ event.artist }}
+              </a>
+            </h3>
+
+            <p>
+              {{ event.description[:60] }}...
+              <a href="{{url_for('event.show', id=event.id)}}">read more</a>
+            </p>
+            <div class="row">
+              <div class="col-6">
+                <p><b>Tickets:</b> {{event.tickets}}</p>
+              </div>
+              <div class="col-6">
+                <p><b>Price:</b> ${{event.ticketPrice}}</p>
+              </div>
+            </div>
+            <p>
+              By <a href="#!">{{ event.user.fullName }}</a>
+              <span class="pull-right"
+                >on {{ event.dateCreated.strftime('%d-%m-%Y') }}</span
+              >
+            </p>
+          </div>
+          {% if event.status == '["Sold Out"]' or event.status == "Sold Out" %}
+          <div class="card-footer mt-3 sold">Sold Out</div>
+          {% elif event.status == '["Upcoming"]' or event.status == "Upcoming"
+          %}
+          <div class="card-footer upcoming mt-3 booked">Upcoming</div>
+          {% elif event.status == '["Unpublished"]' or event.status ==
+          "Unpublished" %}
+          <div class="card-footer mt-3 inactive">Unpublished</div>
+          {% endif %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <!-- rnb -->
+    <div class="row tab-content events" id="rnb">
+      {% for event in rnb %}
+      <div class="col-md-4 pt-4">
+        <div class="blog-card card bg-dark text-light bg-light card-effect">
+          <img
+            src="{{ event.imgUrl }}"
+            alt=""
+            style="overflow: hidden"
+            class="blog-thumbnail"
+          />
+          <div class="blog-container card-body pb-5">
+            <span class="badge badge-info mb-2"
+              >{{ event.dTime.strftime('%H:%M on %A, %d %B %Y') }}</span
+            >
+            <h3 class="">
+              <a
+                href="{{url_for('event.show', id=event.id)}}"
+                class="card-title"
+              >
+                {{ event.artist }}
+              </a>
+            </h3>
+
+            <p>
+              {{ event.description[:60] }}...
+              <a href="{{url_for('event.show', id=event.id)}}">read more</a>
+            </p>
+            <div class="row">
+              <div class="col-6">
+                <p><b>Tickets:</b> {{event.tickets}}</p>
+              </div>
+              <div class="col-6">
+                <p><b>Price:</b> ${{event.ticketPrice}}</p>
+              </div>
+            </div>
+            <p>
+              By <a href="#!">{{ event.user.fullName }}</a>
+              <span class="pull-right"
+                >on {{ event.dateCreated.strftime('%d-%m-%Y') }}</span
+              >
+            </p>
+          </div>
+          {% if event.status == '["Sold Out"]' or event.status == "Sold Out" %}
+          <div class="card-footer mt-3 sold">Sold Out</div>
+          {% elif event.status == '["Upcoming"]' or event.status == "Upcoming"
+          %}
+          <div class="card-footer upcoming mt-3 booked">Upcoming</div>
+          {% elif event.status == '["Unpublished"]' or event.status ==
+          "Unpublished" %}
+          <div class="card-footer mt-3 inactive">Unpublished</div>
+          {% endif %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq">
+  <div class="container">
+    <div class="col-md-8 mx-auto text-center p-5">
+      <h6 class="text-primary">FAQ</h6>
+      <h1>Frequently Asked Questions</h1>
+    </div>
+
+    <div class="row flex-center">
+      <div class="col-sm-8 offset-sm-2">
+        <div id="accordion">
+          <div class="accordion-card">
+            <div
+              class="accordion-card__header"
+              id="headingOne"
+              data-toggle="collapse"
+              data-target="#collapseOne"
+              aria-expanded="true"
+              aria-controls="collapseOne"
+            >
+              <h5 class="mb-0">
+                <div class="circle-icon">
+                  <i class="bi bi-question-circle"></i>
+                </div>
+                <span>What do I get?</span>
+              </h5>
+              <i class="bi bi-arrow-down-circle"></i>
+            </div>
+            <div
+              id="collapseOne"
+              class="collapse show"
+              aria-labelledby="headingOne"
+              data-parent="#accordion"
+            >
+              <div class="accordion-card__body">
+                Once booked an event you get admission to that event which you
+                and your friends can attend. You will receive an email and msg
+                with admission passes allowing to go and party. That is all you
+                need to do!
+              </div>
+            </div>
+          </div>
+          <div class="accordion-card">
+            <div
+              class="accordion-card__header collapsed"
+              id="headingTwo"
+              data-toggle="collapse"
+              data-target="#collapseTwo"
+              aria-expanded="false"
+              aria-controls="collapseTwo"
+            >
+              <h5 class="mb-0">
+                <div class="circle-icon">
+                  <i class="bi bi-question-circle"></i>
+                </div>
+                <span>I want to get a refund?</span>
+              </h5>
+              <i class="bi bi-arrow-down-circle"></i>
+            </div>
+            <div
+              id="collapseTwo"
+              class="collapse"
+              aria-labelledby="headingTwo"
+              data-parent="#accordion"
+            >
+              <div class="accordion-card__body">
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Animi
+                praesentium ipsam itaque nemo harum aut obcaecati. Distinctio
+                explicabo veniam debitis quam repudiandae nesciunt possimus quis
+                asperiores voluptatum nulla voluptate labore, facere expedita
+                dolorem libero, ipsam nobis adipisci reprehenderit? Vel
+                assumenda tempore ad quaerat unde, fugit eos voluptate, atque
+                voluptatem neque ullam. Consequuntur sequi, non omnis laboriosam
+                iste reiciendis cupiditate mollitia iusto inventore hic libero
+                ipsum aut odit cum commodi atque!
+              </div>
+            </div>
+          </div>
+          <div class="accordion-card">
+            <div
+              class="accordion-card__header collapsed"
+              id="headingThree"
+              data-toggle="collapse"
+              data-target="#collapseThree"
+              aria-expanded="false"
+              aria-controls="collapseThree"
+            >
+              <h5 class="mb-0">
+                <div class="circle-icon">
+                  <i class="bi bi-question-circle"></i>
+                </div>
+                <span>How many tickets can I buy?</span>
+              </h5>
+              <i class="bi bi-arrow-down-circle"></i>
+            </div>
+            <div
+              id="collapseThree"
+              class="collapse"
+              aria-labelledby="headingThree"
+              data-parent="#accordion"
+            >
+              <div class="accordion-card__body">
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Animi
+                praesentium ipsam itaque nemo harum aut obcaecati. Distinctio
+                explicabo veniam debitis quam repudiandae nesciunt possimus quis
+                asperiores voluptatum nulla voluptate labore, facere expedita
+                dolorem libero, ipsam nobis adipisci reprehenderit? Vel
+                assumenda tempore ad quaerat unde, fugit eos voluptate, atque
+                voluptatem neque ullam. Consequuntur sequi, non omnis laboriosam
+                iste reiciendis cupiditate mollitia iusto inventore hic libero
+                ipsum aut odit cum commodi atque!
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
